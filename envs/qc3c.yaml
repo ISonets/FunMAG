@@ -1,0 +1,8 @@
+name: qc3c
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - python=3.9
+  - qc3c=0.6  # or install via pip if not in bioconda

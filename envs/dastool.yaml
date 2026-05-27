@@ -1,0 +1,11 @@
+name: dastool
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - das_tool=1.1.4
+  - diamond=2.1.8
+  - blast=2.14.1
+  - prodigal=2.6.3
+  - ruby=3.1

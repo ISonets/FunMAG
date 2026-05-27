@@ -1,0 +1,13 @@
+name: bioinf_v1
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - python=3.9
+  - pandas=1.5
+  - numpy=1.24
+  - biopython=1.81
+  - fastqc=0.12
+  - samtools=1.17
+  - jgi_summarize_bam_contig_depths=1.15  # from metabat2 package

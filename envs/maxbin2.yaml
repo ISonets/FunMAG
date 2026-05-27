@@ -1,0 +1,12 @@
+name: maxbin2
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - maxbin2=2.2.7
+  - perl=5.32
+  - bowtie2=2.5.1
+  - hmmer=3.3.2
+  - idba=1.1.3
+  - fraggenescan=1.31

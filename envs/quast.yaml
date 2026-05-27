@@ -1,0 +1,9 @@
+name: quast
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - quast=5.2.0
+  - python=3.9
+  - matplotlib=3.7

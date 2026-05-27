@@ -1,0 +1,8 @@
+name: magpurify
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - magpurify=2.1.2
+  - samtools=1.17
