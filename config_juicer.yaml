@@ -1,0 +1,61 @@
+# =============================================================================
+# Juicer Hi‑C Pipeline – Unified Configuration
+# Covers: mapping (Snakefile_juicer) + analysis (Snakefile_hic_analysis)
+# =============================================================================
+
+# ---- Sample names (must match core pipeline) ----
+samples: [""]
+
+# ---- Data paths ----
+data_dir: ""
+
+# ---- Threads & memory ----
+n_threads: 32
+juicer_java_mem: "32g"
+
+# ---- Restriction enzyme ----
+restriction_enzyme: ""
+
+# ---- Juicer paths ("auto" = find via conda/which) ----
+juicer_path: "auto"
+
+# =============================================================================
+# Hi‑C Mapping (Snakefile_juicer)
+# =============================================================================
+
+# Resolutions for .hic file generation (5 kb to 1 Mb for fungal genomes)
+hic_resolutions: "5000,10000,25000,50000,100000,250000,500000,1000000"
+
+# 3D-DNA scaffolding (reorders contigs using Hi‑C contacts)
+run_3d_dna: true
+
+# Diploid phasing (only if MAGs are heterozygous diploids; most fungi are not)
+run_phasing: false
+
+# =============================================================================
+# Hi‑C Map Analysis (Snakefile_hic_analysis)
+# =============================================================================
+
+# Enable/disable downstream analysis entirely
+run_hic_analysis: true
+
+# Number of threads for analysis steps
+analysis_threads: 16
+
+# Java memory for juicer_tools analysis commands
+analysis_mem: "32g"
+
+# Normalization methods to apply
+normalizations:
+  - KR       # Knight-Ruiz iterative matrix balancing
+  - VC       # Vanilla Coverage normalization
+  - VC_SQRT  # Square root of VC normalization
+
+# Resolutions for compartment eigenvector calculation
+compartment_resolutions: "10000,25000,50000,100000"
+
+# Resolutions for domain/loop detection (Arrowhead + HiCCUPS)
+feature_resolutions: "5000,10000,25000"
+
+# Resolutions for extracting raw interaction matrices
+matrix_resolutions: "10000,25000,50000"

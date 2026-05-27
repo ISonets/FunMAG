@@ -1,0 +1,104 @@
+# =============================================================================
+# Fungal MAG Reconstruction Pipeline – Configuration
+# =============================================================================
+
+# ---- Sample names ----
+samples: [""]
+
+# ---- Data paths ----
+data_dir: ""
+
+# ---- Threads & resources ----
+n_threads: 32
+
+# ---- Adapters (WGS) ----
+adapters:
+  A: "AGATCGGAAGAGCACACGTCTGAACTCCAGTCA"
+  B: "AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT"
+
+# =============================================================================
+# Assembly (optimized for fungal genomes)
+# =============================================================================
+use_megahit: false                        # true = MEGAHIT, false = SPAdes
+spades_kmers: "21,33,55,77,99,127"        # Wider step, variable coverage
+spades_mem: 32                            # GB – fungi have large genomes
+
+# =============================================================================
+# Quality control (stricter for fungal genomes)
+# =============================================================================
+trimmomatic_pe_opts: "SLIDINGWINDOW:4:20 MINLEN:150 LEADING:3 TRAILING:3"
+trimmomatic_se_opts: "SLIDINGWINDOW:4:20 MINLEN:100 LEADING:3 TRAILING:3"
+
+# =============================================================================
+# Contig filtering
+# =============================================================================
+min_contig_length: 1000
+
+# =============================================================================
+# Hi‑C enzyme & bin3C
+# =============================================================================
+restriction_enzyme: "DpnII"
+bin3c_resolution: 10000                   # 10 kb – better for fungal chromosomes
+
+# =============================================================================
+# HiCzin normalization
+# =============================================================================
+hiczin_iterations: 100
+hiczin_filter_threshold: 2
+
+# =============================================================================
+# MetaBAT2
+# =============================================================================
+metabat2_min_contig: 1005                 # Lower = more fungal contigs
+
+# =============================================================================
+# MaxBin2
+# =============================================================================
+maxbin2_prob_threshold: 0.75              # Lower = catch rare fungi
+maxbin2_min_contig: 1000
+
+# =============================================================================
+# DASTool
+# =============================================================================
+run_dastool: true
+dastool_search_engine: "diamond"          # blastp if sensitivity needed
+
+# =============================================================================
+# BUSCO (fungal quality control)
+# =============================================================================
+busco_lineage: "auto"                     # Auto‑detect (falls back to fungi_odb10)
+busco_min_completeness: 50
+busco_max_contamination: 10
+busco_mode: "comprehensive"               # comprehensive | dastool_only
+
+# =============================================================================
+# dRep dereplication
+# =============================================================================
+drep_ani_threshold: 0.95                  # 0.95 = species; 0.99 = strain
+drep_coverage: 0.3
+
+# =============================================================================
+# CoverM abundance
+# =============================================================================
+coverm_min_covered_fraction: 0.5          # Lower for rare fungi
+
+# =============================================================================
+# Fungal consensus
+# =============================================================================
+min_fungal_fraction: 0.5
+
+# =============================================================================
+# Optional modules
+# =============================================================================
+run_qc3c: true                            # Hi‑C read preprocessing
+
+# =============================================================================
+# Database paths (ADJUST THESE TO YOUR SYSTEM)
+# =============================================================================
+kraken2_db:       "/path/to/kraken2/standard"
+blast_nr_db:      "/path/to/ncbi/nr"
+kaiju_db:         "/path/to/kaiju/nr_euk"
+kaiju_nodes:      "/path/to/kaiju/nodes.dmp"
+krakenuniq_db:    "/path/to/krakenuniq/db"
+kneaddata_db:     "/path/to/kneaddata_human_db"
+virsorter2_db:    "/path/to/virsorter2_db"

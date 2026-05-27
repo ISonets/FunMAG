@@ -1,0 +1,52 @@
+# =============================================================================
+# Comparative Genomics Pipeline – Configuration
+# anvi'o Pangenome, Phylogenomics, ANI, Functional Enrichment, Metabolism
+# =============================================================================
+
+# ---- Project identification ----
+project_name: ""
+species_name: ""
+
+# ---- Input directory with FASTA files ----
+# Place all genome FASTA files here (post-review assemblies + reference genomes)
+genome_dir: "fastas_comp_genomics"
+
+# ---- Number of genomes (0 = auto-detect from genome_dir) ----
+n_genomes: 0
+
+# ---- AUGUSTUS species model for gene prediction ----
+# Common fungal models: pichia_stipitis, saccharomyces, aspergillus_nidulans,
+#                       aspergillus_fumigatus, neurospora_crassa, schizosaccharomyces
+augustus_species: ""
+
+# ---- Gene caller name (for genome storage) ----
+gene_caller: "AUGUSTUS"
+
+# ---- MCL inflation for pangenome clustering ----
+# 10 = stringent (more clusters, recommended for fungi)
+# 2-5 = relaxed (fewer clusters, for distant relatives)
+mcl_inflation: 10
+
+# ---- Minimum occurrence for gene clusters ----
+# Gene clusters present in fewer genomes than this are excluded
+min_occurrence: 2
+
+# ---- Metabolism module completion threshold ----
+# Pathways with completion >= this threshold are considered present
+module_completion_threshold: 0.5
+
+# ---- Threads for each step (adjust for your laptop) ----
+augustus_threads: 8
+hmm_threads: 8
+kegg_threads: 8
+pfam_threads: 8
+pangenome_threads: 32
+ani_threads: 16
+phylogeny_threads: 32
+enrichment_threads: 16
+metabolism_threads: 16
+
+# ---- KEGG database archive (downloaded separately) ----
+# Download from: https://www.genome.jp/kegg-bin/get_htext?ko00001
+# Place kegg-db.tar.gz in the project root
+kegg_archive: "kegg-db.tar.gz"
