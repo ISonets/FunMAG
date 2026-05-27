@@ -19,7 +19,6 @@ A comprehensive, modular Snakemake-based pipeline for **metagenome-assembled gen
 - [Output Structure](#-output-structure)
 - [Resource Requirements](#-resource-requirements)
 - [Pipeline Flow](#-pipeline-flow)
-- [Methods Description](#-methods-description)
 - [Troubleshooting](#-troubleshooting)
 - [Citation](#-citation)
 - [License](#-license)
@@ -78,6 +77,8 @@ bash install_envs.sh
 
 # Download required databases (interactive)
 bash download_databases.sh
+```
+---
 
 ### Database Requirements
 
@@ -90,7 +91,7 @@ bash download_databases.sh
 | KrakenUniq microbial database | ~20 GB | Core pipeline |
 | Human genome (hg38, for kneaddata) | ~3 GB | Core pipeline |
 | VirSorter2 database | ~2 GB | Core pipeline |
-| KEGG KOfams (for anvi'o) | ~1 GB | Comparative genomics |
+| KEGG KOfams (for anvio) | ~1 GB | Comparative genomics |
 
 See `download_databases.sh` for automated download instructions.
 
